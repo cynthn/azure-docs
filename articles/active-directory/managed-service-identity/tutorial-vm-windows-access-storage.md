@@ -8,6 +8,7 @@ manager: mtillman
 editor: daveba
 
 ms.service: active-directory
+ms.component: msi
 ms.devlang: na
 ms.topic: article
 ms.tgt_pltfrm: na
@@ -16,17 +17,20 @@ ms.date: 04/12/2018
 ms.author: daveba
 ---
 
-# Use a Windows VM Managed Service Identity to access Azure Storage
+# Tutorial: Use a Windows VM Managed Service Identity to access Azure Storage
 
 [!INCLUDE[preview-notice](../../../includes/active-directory-msi-preview-notice.md)]
 
-This tutorial shows you how to enable Managed Service Identity (MSI) for a Windows Virtual Machine, and use the identity to access Azure Storage.
-
+This tutorial shows you how to enable Managed Service Identity (MSI) for a Windows Virtual Machine, and use that identity to access Azure Storage.  You learn how to:
 
 > [!div class="checklist"]
-> * Enable the Managed Service Identity (MSI) on a Windows Virtual Machine (VM) 
+> * Enable Managed Service Identity (MSI) on a Windows Virtual Machine (VM)
+> * Create a blob container in a storage account
 > * Grant your Virtual Machine Identity access to a storage account 
 > * Get an access token using your Virtual Machine's identity, and use it to access Azure Storage 
+
+> [!NOTE]
+> Azure Active Directory authentication for Azure Storage is in public preview.
 
 ## Prerequisites
 
@@ -53,7 +57,7 @@ For this tutorial, we create a new Windows VM. You can also enable MSI on an exi
 
 ## Enable MSI on your VM
 
-A Virtual Machine MSI enables you to get access tokens from Azure AD without needing to put credentials into your code. Under the covers, enabling MSI on a Virtual Machine via the Azure portal does two things: it registers your VM with Azure AD to create a managed identity and installs the MSI VM extension. 
+A Virtual Machine MSI enables you to get access tokens from Azure AD without needing to put credentials into your code. Under the covers, enabling MSI on a Virtual Machine via the Azure portal does two things: it registers your VM with Azure AD to create a managed identity and configures the identity on the VM. 
 
 1. Navigate to the resource group of your new virtual machine, and select the virtual machine you created in the previous step.
 2. Under the "Settings" category on the left navigation, click on  Configuration.
@@ -61,10 +65,6 @@ A Virtual Machine MSI enables you to get access tokens from Azure AD without nee
 4. Click Save, to apply the configuration. 
 
     ![Alt image text](../media/msi-tutorial-linux-vm-access-arm/msi-linux-extension.png)
-
-5. If you wish to check which extensions are on the VM, click **Extensions**. If MSI is enabled, the **ManagedIdentityExtensionforWindows** appears in the list.
-
-    ![Alt image text](../media/msi-tutorial-linux-vm-access-arm/msi-extension-value.png)
 
 ## Create a storage account 
 
@@ -152,7 +152,7 @@ namespace StorageOAuthToken
         {
             string accessToken = string.Empty;
             // Build request to acquire MSI token
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:50342/oauth2/token?resource=" + resourceID);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=" + resourceID);
             request.Headers["Metadata"] = "true";
             request.Method = "GET";
 
@@ -183,13 +183,12 @@ The response contains the contents of the file:
 
 `Hello world! :)`
 
-## Related content
+## Next steps
 
-- For an overview of MSI, see [Managed Service Identity overview](overview.md).
-- To learn how to do this same tutorial using a storage SAS credential, see [Use a Windows VM Managed Service Identity to access Azure Storage via a SAS credential](tutorial-windows-vm-access-storage-sas.md)
-- For more information about the Azure Storage account SAS feature, see:
-  - [Using shared access signatures (SAS)](/azure/storage/common/storage-dotnet-shared-access-signature-part-1.md)
-  - [Constructing a Service SAS](/rest/api/storageservices/Constructing-a-Service-SAS.md)
+In this tutorial, you learned how enable a Linux virtual machine Managed Service Identity to access Azure Storage.  To learn more about Azure Storage see:
+
+> [!div class="nextstepaction"]
+> [Azure Storage](/azure/storage/common/storage-introduction)
 
 
 
