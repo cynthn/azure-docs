@@ -1,22 +1,21 @@
 ---
-title: Copy activity performance and scalability guide in Azure Data Factory | Microsoft Docs
+title: Copy activity performance and scalability guide
 description: Learn about key factors that affect the performance of data movement in Azure Data Factory when you use the copy activity.
 services: data-factory
 documentationcenter: ''
+ms.author: jingwang
 author: linda33wj
-manager: craigg
+manager: shwang
 ms.reviewer: douglasl
-
 ms.service: data-factory
 ms.workload: data-services
-ms.tgt_pltfrm: na
-
 ms.topic: conceptual
-ms.date: 08/16/2019
-ms.author: jingwang
-
+ms.custom: seo-lt-2019
+ms.date: 10/24/2019
 ---
+
 # Copy activity performance and scalability guide
+
 > [!div class="op_single_selector" title1="Select the version of Azure Data Factory that you're using:"]
 > * [Version 1](v1/data-factory-copy-activity-performance.md)
 > * [Current version](copy-activity-performance.md)
@@ -145,7 +144,7 @@ To override this default, specify a value for the **dataIntegrationUnits** prope
 You can see the DIUs used for each copy run in the copy activity output when you monitor an activity run. For more information, see [Copy activity monitoring](copy-activity-overview.md#monitoring).
 
 > [!NOTE]
-> Setting of DIUs larger than four currently applies only when you copy multiple files from Azure Storage, Azure Data Lake Storage, Amazon S3, Google Cloud Storage, cloud FTP, or cloud SFTP to any other cloud data stores.
+> Setting of DIUs larger than four currently applies only when you copy multiple files from Azure Blob/ADLS Gen1/ADLS Gen2/Amazon S3/Google Cloud Storage/cloud FTP/cloud SFTP or from partition-option-enabled cloud relational data store (including [Oracle](connector-oracle.md#oracle-as-source)/[Netezza](connector-netezza.md#netezza-as-source)/[Teradata](connector-teradata.md#teradata-as-source)) to any other cloud data stores.
 
 **Example:**
 
@@ -178,6 +177,7 @@ For each copy activity run, Azure Data Factory determines the number of parallel
 | Copy scenario | Default parallel copy count determined by service |
 | --- | --- |
 | Copy data between file-based stores |Depends on the size of the files and the number of DIUs used to copy data between two cloud data stores, or the physical configuration of the self-hosted integration runtime machine. |
+| Copy from relational data store with partition option enabled (including [Oracle](connector-oracle.md#oracle-as-source), [Netezza](connector-netezza.md#netezza-as-source), [Teradata](connector-teradata.md#teradata-as-source), [SAP Table](connector-sap-table.md#sap-table-as-source), and [SAP Open Hub](connector-sap-business-warehouse-open-hub.md#sap-bw-open-hub-as-source))|4 |
 | Copy data from any source store to Azure Table storage |4 |
 | All other copy scenarios |1 |
 
@@ -189,7 +189,7 @@ To control the load on machines that host your data stores, or to tune copy perf
 **Points to note:**
 
 - When you copy data between file-based stores, **parallelCopies** determines the parallelism at the file level. The chunking within a single file happens underneath automatically and transparently. It's designed to use the best suitable chunk size for a given source data store type to load data in parallel and orthogonal to **parallelCopies**. The actual number of parallel copies the data movement service uses for the copy operation at run time is no more than the number of files you have. If the copy behavior is **mergeFile**, the copy activity can't take advantage of file-level parallelism.
-- When you copy data from stores that are not file-based (except [Oracle](connector-oracle.md#oracle-as-source), [Teradata](connector-teradata.md#teradata-as-source), [SAP Table](connector-sap-table.md#sap-table-as-source), and [SAP Open Hub](connector-sap-business-warehouse-open-hub.md#sap-bw-open-hub-as-source) connector as source with data partitioning enabled) to stores that are file-based, the data movement service ignores the **parallelCopies** property. Even if parallelism is specified, it's not applied in this case.
+- When you copy data from stores that are not file-based (except [Oracle](connector-oracle.md#oracle-as-source), [Netezza](connector-netezza.md#netezza-as-source), [Teradata](connector-teradata.md#teradata-as-source), [SAP Table](connector-sap-table.md#sap-table-as-source), and [SAP Open Hub](connector-sap-business-warehouse-open-hub.md#sap-bw-open-hub-as-source) connector as source with data partitioning enabled) to stores that are file-based, the data movement service ignores the **parallelCopies** property. Even if parallelism is specified, it's not applied in this case.
 - The **parallelCopies** property is orthogonal to **dataIntegrationUnits**. The former is counted across all the Data Integration Units.
 - When you specify a value for the **parallelCopies** property, consider the load increase on your source and sink data stores. Also consider the load increase to the self-hosted integration runtime if the copy activity is empowered by it, for example, for hybrid copy. This load increase happens especially when you have multiple activities or concurrent runs of the same activities that run against the same data store. If you notice that either the data store or the self-hosted integration runtime is overwhelmed with the load, decrease the **parallelCopies** value to relieve the load.
 
@@ -288,7 +288,8 @@ You're charged based on two steps: copy duration and copy type.
 
 Here are performance monitoring and tuning references for some of the supported data stores:
 
-* Azure Storage, which includes Blob storage and Table storage: [Azure Storage scalability targets](../storage/common/storage-scalability-targets.md) and [Azure Storage performance and scalability checklist](../storage/common/storage-performance-checklist.md).
+* Azure Blob storage: [Scalability and performance targets for Blob storage](../storage/blobs/scalability-targets.md) and [Performance and scalability checklist for Blob storage](../storage/blobs/storage-performance-checklist.md).
+* Azure Table storage: [Scalability and performance targets for Table storage](../storage/tables/scalability-targets.md) and [Performance and scalability checklist for Table storage](../storage/tables/storage-performance-checklist.md).
 * Azure SQL Database: You can [monitor the performance](../sql-database/sql-database-single-database-monitor.md) and check the Database Transaction Unit (DTU) percentage.
 * Azure SQL Data Warehouse: Its capability is measured in Data Warehouse Units (DWUs). See [Manage compute power in Azure SQL Data Warehouse (Overview)](../sql-data-warehouse/sql-data-warehouse-manage-compute-overview.md).
 * Azure Cosmos DB: [Performance levels in Azure Cosmos DB](../cosmos-db/performance-levels.md).

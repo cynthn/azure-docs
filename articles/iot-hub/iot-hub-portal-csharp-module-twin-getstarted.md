@@ -1,5 +1,5 @@
 ---
-title: Get started with Azure IoT Hub module identity and module twin (portal and .NET) | Microsoft Docs
+title: Azure IoT Hub module identity & module twin (portal and .NET)
 description: Learn how to create module identity and update module twin using the portal and .NET.
 author: robinsh
 manager: philmea
@@ -28,7 +28,7 @@ In this tutorial, you will learn:
 > For information about the Azure IoT SDKs that you can use to build both applications to run on devices and your solution back end, see [Azure IoT SDKs](iot-hub-devguide-sdks.md).
 >
 
-To complete this tutorial, you need the following prerequisites:
+## Prerequisites
 
 * Visual Studio.
 

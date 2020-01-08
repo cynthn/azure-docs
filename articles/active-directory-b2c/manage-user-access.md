@@ -15,7 +15,7 @@ ms.subservice: B2C
 
 # Manage user access in Azure Active Directory B2C
 
-This article discusses how to manage user access to your applications by using Azure Active Directory (Azure AD) B2C. Access management in your application includes:
+This article discusses how to manage user access to your applications by using Azure Active Directory B2C (Azure AD B2C). Access management in your application includes:
 
 - Identifying minors and controlling user access to your application.
 - Requiring parental consent for minors to use your applications.
@@ -172,3 +172,4 @@ The following is an example of a Version based terms of use consent in a claim:
 ## Next steps
 
 - To learn how to delete and export user data, see [Manage user data](manage-user-data.md).
+- For an example custom policy that implements a terms of use prompt, see [A B2C IEF Custom Policy - Sign Up and Sign In with 'Terms of Use' prompt](https://github.com/azure-ad-b2c/samples/tree/master/policies/sign-in-sign-up-versioned-tou).

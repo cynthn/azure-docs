@@ -1,5 +1,5 @@
 ---
-title: Tutorial - Use Azure Security Center for Linux VMs in Azure | Microsoft Docs
+title: Tutorial - Use Azure Security Center for Linux VMs in Azure 
 description: In this tutorial, you learn about the Azure Security Center features to help protect and secure your Linux virtual machines in Azure.
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -10,7 +10,6 @@ tags: azure-resource-manager
 
 ms.assetid: 
 ms.service: virtual-machines-linux
-ms.devlang: na
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure

@@ -10,7 +10,6 @@ services: iot-edge
 ms.topic: conceptual
 ms.date: 07/22/2019
 ms.author: kgremban
-ms.custom: seodec18
 ---
 # Install the Azure IoT Edge runtime on Debian-based Linux systems
 
@@ -104,11 +103,11 @@ Install the security daemon. The package is installed at `/etc/iotedge/`.
    sudo apt-get install iotedge
    ```
 
-Once IoT Edge is successfully installed, the output will prompt you to update the configuration file. Follow the steps in the [Configure the Azure IoT Edge security daemon](#configure-the-security-daemon) section to finish provisioning your device. 
+Once IoT Edge is successfully installed, the output will prompt you to update the configuration file. Follow the steps in the [Configure the security daemon](#configure-the-security-daemon) section to finish provisioning your device. 
 
 ## Install a specific runtime version
 
-If you want to install a specific version of the Azure IoT Edge runtime, you can target the component files directly from the IoT Edge GitHub repository. Use the following steps to get all of the IoT Edge components onto your device: the Moby engine and CLI, the libiothsm, and finally the IoT Edge security daemon.
+If you want to install a specific version of Moby and the Azure IoT Edge runtime instead of using the latest versions, you can target the component files directly from the IoT Edge GitHub repository. Use the following steps to get all of the IoT Edge components onto your device: the Moby engine and CLI, the libiothsm, and finally the IoT Edge security daemon. Skip to the next section, [Configure the security daemon](#configure-the-security-daemon), if you do not want to change to a specific runtime version.
 
 1. Navigate to the [Azure IoT Edge releases](https://github.com/Azure/azure-iotedge/releases), and find the release version that you want to target. 
 
@@ -162,7 +161,7 @@ A single IoT Edge device can be provisioned manually using a device connections 
 
 ### Option 1: Manual provisioning
 
-To manually provision a device, you need to provide it with a [device connection string](how-to-register-device-portal.md) that you can create by registering a new device in your IoT hub.
+To manually provision a device, you need to provide it with a [device connection string](how-to-register-device.md#register-in-the-azure-portal) that you can create by registering a new device in your IoT hub.
 
 Open the configuration file.
 
@@ -187,6 +186,7 @@ Find the provisioning configurations of the file and uncomment the **Manual prov
    #     method: "tpm"
    #     registration_id: "{registration_id}"
 ```
+To paste clipboard contents into Nano `Shift+Right Click` or press `Shift+Insert`.
 
 Save and close the file.
 
@@ -226,6 +226,8 @@ Find the provisioning configurations of the file and uncomment the section appro
        registration_id: "{registration_id}"
    ```
 
+To paste clipboard contents into Nano `Shift+Right Click` or press `Shift+Insert`.
+
 Save and close the file.
 
    `CTRL + X`, `Y`, `Enter`
@@ -240,19 +242,27 @@ sudo systemctl restart iotedge
 
 If you used the **manual configuration** steps in the previous section, the IoT Edge runtime should be successfully provisioned and running on your device. If you used the **automatic configuration** steps, then you need to complete some additional steps so that the runtime can register your device with your IoT hub on your behalf. For next steps, see [Create and provision a simulated TPM IoT Edge device on a Linux virtual machine](how-to-auto-provision-simulated-device-linux.md#give-iot-edge-access-to-the-tpm).
 
-You can check the status of the IoT Edge Daemon using:
+You can check the status of the IoT Edge Daemon:
 
 ```bash
 systemctl status iotedge
 ```
 
-Examine daemon logs using:
+Examine daemon logs:
 
 ```bash
 journalctl -u iotedge --no-pager --no-full
 ```
 
-And, list running modules with:
+Run an automated check for the most common configuration and networking errors: 
+
+```bash
+sudo iotedge check
+```
+
+Until you deploy your first module to IoT Edge on your device, the **$edgeHub** system module will not be deployed to the device. As a result, the automated check will return an error for the `Edge Hub can bind to ports on host` connectivity check. This error can be ingored unless it occurs after deploying a module to the device.
+
+Finally, list running modules:
 
 ```bash
 sudo iotedge list

@@ -1,5 +1,5 @@
 ---
-title: Optimize your Linux VM on Azure | Microsoft Docs
+title: Optimize your Linux VM on Azure 
 description: Learn some optimization tips to make sure you have set up your Linux VM for optimal performance on Azure
 keywords: linux virtual machine,virtual machine linux,ubuntu virtual machine
 services: virtual-machines-linux
@@ -13,7 +13,7 @@ ms.assetid: 8baa30c8-d40e-41ac-93d0-74e96fe18d4c
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
-ms.devlang: na
+
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: rclaus

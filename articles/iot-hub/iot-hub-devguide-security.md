@@ -59,7 +59,7 @@ Azure IoT Hub grants access to endpoints by verifying a token against the shared
 Security credentials, such as symmetric keys, are never sent over the wire.
 
 > [!NOTE]
-> The Azure IoT Hub resource provider is secured through your Azure subscription, as are all providers in the [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md).
+> The Azure IoT Hub resource provider is secured through your Azure subscription, as are all providers in the [Azure Resource Manager](../azure-resource-manager/management/overview.md).
 
 For more information about how to construct and use security tokens, see [IoT Hub security tokens](iot-hub-devguide-security.md#security-tokens).
 
@@ -359,7 +359,7 @@ For more information about authentication using certificate authority, see [Devi
 
 ### Register an X.509 certificate for a device
 
-The [Azure IoT Service SDK for C#](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/service) (version 1.0.8+) supports registering a device that uses an X.509 certificate for authentication. Other APIs such as import/export of devices also support X.509 certificates.
+The [Azure IoT Service SDK for C#](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/iothub/service) (version 1.0.8+) supports registering a device that uses an X.509 certificate for authentication. Other APIs such as import/export of devices also support X.509 certificates.
 
 You can also use the CLI extension command [az iot hub device-identity](/cli/azure/ext/azure-cli-iot-ext/iot/hub/device-identity?view=azure-cli-latest) to configure X.509 certificates for devices.
 
@@ -386,7 +386,7 @@ await registryManager.AddDeviceAsync(device);
 
 ### Use an X.509 certificate during run-time operations
 
-The [Azure IoT device SDK for .NET](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/device) (version 1.0.11+) supports the use of X.509 certificates.
+The [Azure IoT device SDK for .NET](https://github.com/Azure/azure-iot-sdk-csharp/tree/master/iothub/device) (version 1.0.11+) supports the use of X.509 certificates.
 
 ### C\# Support
 

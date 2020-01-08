@@ -3,13 +3,12 @@ title: How to specify a recognition model - Face API
 titleSuffix: Azure Cognitive Services
 description: This article will show you how to choose which recognition model to use with your Azure Face API application.
 services: cognitive-services
-author: longl
+author: longli0
 manager: nitinme
-
 ms.service: cognitive-services
 ms.subservice: face-api
 ms.topic: conceptual
-ms.date: 03/28/2019
+ms.date: 12/03/2019
 ms.author: longl
 ---
 
@@ -103,7 +102,8 @@ If you normally specify a confidence threshold (a value between zero and one tha
 
 In this article, you learned how to specify the recognition model to use with different Face service APIs. Next, follow a quickstart to get started using face detection.
 
-* [Detect faces in an image](../quickstarts/csharp-detect-sdk.md)
+* [Face .NET SDK](../Quickstarts/csharp-sdk.md)
+* [Face Python SDK](../Quickstarts/python-sdk.md)
 
 [Face - Detect]: https://westus.dev.cognitive.microsoft.com/docs/services/563879b61984550e40cbbe8d
 [Face - Find Similar]: https://westus.dev.cognitive.microsoft.com/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395237

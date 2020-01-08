@@ -1,13 +1,14 @@
 ---
 title: Troubleshoot Azure sign-up
 description: Resolving an issue when trying to sign-up for a new account in the Microsoft Azure portal account center.
+services: billing
 author: v-miegge
-manager: na
+manager: dcscontentpm
 editor: v-jesits
 tags: billing
-ms.service: billing
+ms.service: cost-management-billing
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/12/2019
@@ -101,7 +102,7 @@ Make sure that you're using the correct sign-in credentials. Then, check the ben
 
 ### Can't activate new Azure In Open subscription
 
-To create an Azure In Open subscription, you must have a valid Online Service Activation (OSA) key that has at least one Azure In Open token associated with it. If you don't have an OSA key, contact one of the Microsoft Partners that are listed in [Microsoft Pinpoint](http://pinpoint.microsoft.com/).
+To create an Azure In Open subscription, you must have a valid Online Service Activation (OSA) key that has at least one Azure In Open token associated with it. If you don't have an OSA key, contact one of the Microsoft Partners that are listed in [Microsoft Pinpoint](https://pinpoint.microsoft.com/).
 
 ### Error: *You are not eligible for an Azure subscription*
 
