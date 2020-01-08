@@ -4,8 +4,8 @@ description: You can use Azure Resource Manager templates to create and configur
 ms.service:  azure-monitor
 ms.subservice: logs
 ms.topic: conceptual
-author: MGoedtel
-ms.author: magoedte
+author: bwren
+ms.author: bwren
 ms.date: 10/22/2019
 
 ---
@@ -14,7 +14,7 @@ ms.date: 10/22/2019
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
-You can use [Azure Resource Manager templates](../../azure-resource-manager/resource-group-authoring-templates.md) to create and configure Log Analytics workspaces in Azure Monitor. Examples of the tasks you can perform with templates include:
+You can use [Azure Resource Manager templates](../../azure-resource-manager/templates/template-syntax.md) to create and configure Log Analytics workspaces in Azure Monitor. Examples of the tasks you can perform with templates include:
 
 * Create a workspace including setting pricing tier 
 * Add a solution
@@ -180,7 +180,7 @@ The following template sample illustrates how to:
     },
     "immediatePurgeDataOn30Days": {
       "type": "bool",
-      "defaultValue": "false",
+      "defaultValue": "[bool('false')]",
       "metadata": {
         "description": "If set to true when changing retention to 30 days, older data will be immediately deleted. Use this with extreme caution. This only applies when retention is being set to 30 days."
       }
