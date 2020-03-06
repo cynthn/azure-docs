@@ -110,33 +110,9 @@ You can initiate an account failover from the Azure portal, PowerShell, Azure CL
 
 ## About the preview
 
-Account failover is available in preview for all customers using GRS or RA-GRS with Azure Resource Manager deployments. General-purpose v1, General-purpose v2, and Blob storage account types are supported. account failover is currently available in these regions:
-
-- Asia East
-- Asia Southeast
-- Australia East
-- Australia Southeast
-- US Central
-- US East 2
-- US West Central
-- US West 2
+Account failover is available in preview for all customers using GRS or RA-GRS with Azure Resource Manager deployments. General-purpose v1, General-purpose v2, and Blob storage account types are supported. Account failover is currently available in all public regions. Account failover is not available in sovereign/national clouds at this time.
 
 The preview is intended for non-production use only. Production service-level agreements (SLAs) are not currently available.
-
-### Register for the preview
-
-To register for the preview, run the following commands in PowerShell. Make sure to replace the placeholder in brackets with your own subscription ID:
-
-```powershell
-Connect-AzAccount -SubscriptionId <subscription-id>
-Register-AzProviderFeature -FeatureName CustomerControlledFailover -ProviderNamespace Microsoft.Storage
-```
-
-It can take 5-7 days to receive approval for the preview. To verify that your registration has been approved, run the following command:
-
-```powershell
-Get-AzProviderFeature -FeatureName CustomerControlledFailover -ProviderNamespace Microsoft.Storage
-```
 
 ### Additional considerations
 
