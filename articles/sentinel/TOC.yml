@@ -27,8 +27,16 @@
     href: roles.md
   - name: Advanced multistage attack detection
     href: fusion.md
+  - name: Bring your own machine learning platform
+    href: bring-your-own-ml.md
   - name: Extend Azure Sentinel across workspaces and tenants
     href: extend-sentinel-across-workspaces-tenants.md
+  - name: Identify advanced threats with UEBA
+    href: identify-threats-with-entity-behavior-analytics.md
+  - name: Import threat intelligence into Azure Sentinel
+    href: import-threat-intelligence.md
+  - name: Use external data with watchlists
+    href: watchlists.md
   - name: Normalize your data across tables
     href: normalization.md
   - name: Security
@@ -62,6 +70,8 @@
         href: connect-microsoft-defender-advanced-threat-protection.md
       - name: Microsoft Defender for Identity (formerly Azure ATP)
         href: connect-azure-atp.md
+      - name: Microsoft Defender for Office 365 (formerly Office 365 ATP)
+        href: connect-office-365-advanced-threat-protection.md
       - name: Azure DDoS Protection
         href: connect-azure-ddos-protection.md
       - name: Azure Firewall
@@ -86,6 +96,8 @@
         href: connect-barracuda.md 
       - name: Barracuda CloudGen Firewall
         href: connect-barracuda-cloudgen-firewall.md
+      - name: Beyond Security beSECURE
+        href: connect-besecure.md
       - name: Citrix Analytics (Security)
         href: connect-citrix-analytics.md
       - name: F5 BIG-IP
@@ -138,6 +150,10 @@
             href: connect-checkpoint.md
           - name: Cisco ASA
             href: connect-cisco.md
+          - name: Citrix WAF
+            href: connect-citrix-waf.md
+          - name: CyberArk Enterprise Password Vault
+            href: connect-cyberark.md
           - name: ExtraHop Reveal(x)
             href: connect-extrahop.md
           - name: F5 ASM
@@ -161,8 +177,12 @@
     - name: Connect threat intelligence
       href: connect-threat-intelligence.md  
     - name: Connect Azure Stack VMs
-      href: connect-azure-stack.md  
-  - name: Work with multiple tenants (MSSP)
+      href: connect-azure-stack.md
+    - name: Monitor data connector health
+      href: monitor-data-connector-health.md
+  - name: Enable User and Entity Behavior Analytics
+    href: enable-entity-behavior-analytics.md
+  - name: Manage multiple tenants (MSSP)
     href: multiple-tenants-service-providers.md
   - name: Work with incidents in multiple workspaces
     href: multiple-workspace-view.md
@@ -181,12 +201,14 @@
       href: bookmarks.md
     - name: Use livestream to hunt
       href: livestream.md
+    - name: Manage hunting queries with REST-API
+      href: hunting-with-rest-api.md
   - name: Remove Azure Sentinel
     href: offboard.md
 - name: Reference (New!)
   items:
   - name: REST APIs
-    href: https://docs.microsoft.com/rest/api/securityinsights/
+    href: /rest/api/securityinsights/
   - name: Network normalization schema
     href: normalization-schema.md
 - name: Resources
@@ -196,7 +218,7 @@
   - name: Azure Roadmap
     href: https://azure.microsoft.com/updates/?updateType=security&category=security&query=sentinel
   - name: Azure Security, Privacy, & Compliance blog
-    href: https://docs.microsoft.com/archive/blogs/azuresecurity/
+    href: /archive/blogs/azuresecurity/
   - name: Regional availability
     href: https://azure.microsoft.com/global-infrastructure/services/?products=azure-sentinel
   - name: Pricing
@@ -204,4 +226,3 @@
   
 
     
-   
