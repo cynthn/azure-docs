@@ -69,9 +69,18 @@ Make sure the server roles running on the machine are supported by Sysprep. For 
 
 To generalize your Windows VM, follow these steps:
 
-1. Sign in to your Windows VM.
+1. Open the page for the VM.
    
-2. Open a Command Prompt window as an administrator. 
+2.In the left menu, under **Operations**, select **Run command**. 
+1. On the Run Command page, select **RunPowerShellScript**. The **Run Command Script** page will open.
+2. Enter the following into the **PowerShell script** box:
+   
+   ```
+   Remove-Item –path %WINDIR%\Panther –recurse
+   $sysprep = '%WINDIR%\System32\sysprep\sysprep.exe'
+   $cmds = '/generalize /oobe /shutdown'
+   Invoke-Command -ScriptBlock {param($sysprep,$cmds) Start-Process -FilePath $sysprep -ArgumentList $cmds} -ArgumentList $sysprep,$cmds
+   ```
 
 3. Delete the panther directory (C:\Windows\Panther). Then change the directory to %windir%\system32\sysprep, and then run `sysprep.exe`.
    
